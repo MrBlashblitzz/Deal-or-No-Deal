@@ -170,12 +170,12 @@
             if (totalCash >= 1000) {
               alert("You Win!");
               cash.innerHTML = "Congratulations!";
+            } else {
+              totalCash += 500;
+              tag.style.display = "none";
+              cashAnimation.style.animation = "popUp 1s linear";
+              setTimeout(stopAnimate, 1000);
             }
-         
-            totalCash += 500;
-            tag.style.display = "none";
-            cashAnimation.style.animation = "popUp 1s linear";
-            setTimeout(stopAnimate, 1000);
         }
         function stopAnimate() {cashAnimation.style.animation = "none";}
 
