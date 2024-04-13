@@ -171,6 +171,11 @@
             tag.style.display = "none";
             cashAnimation.style.animation = "popUp 1s linear";
             setTimeout(stopAnimate, 1000);
+
+            if (totalCash >= 1000) {
+              alert("You Win!");
+              cash.innerHTML = "Congratulations!";
+            }
         }
         function stopAnimate() {cashAnimation.style.animation = "none";}
 
