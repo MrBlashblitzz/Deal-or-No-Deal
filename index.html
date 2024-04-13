@@ -167,15 +167,15 @@
             cash.style.color = "red";
         }
        else {
-            totalCash += 500;
-            tag.style.display = "none";
-            cashAnimation.style.animation = "popUp 1s linear";
-            setTimeout(stopAnimate, 1000);
-
             if (totalCash >= 1000) {
               alert("You Win!");
               cash.innerHTML = "Congratulations!";
             }
+         
+            totalCash += 500;
+            tag.style.display = "none";
+            cashAnimation.style.animation = "popUp 1s linear";
+            setTimeout(stopAnimate, 1000);
         }
         function stopAnimate() {cashAnimation.style.animation = "none";}
 
