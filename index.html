@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  .container {
+      display: grid; 
+      grid-template-columns: auto auto auto auto auto; 
+      gap: 15px; 
+  }
+
+  .container div {
+      height: 50px; 
+      width: 50px; 
+      border: 3px solid white; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      font-size: 20px; 
+      font-weight: bold; 
+      background: gray; 
+      color: white; 
+      text-shadow: 0px 0px 5px black; 
+  }
+
+  h1 {
+      font-family: monospace; 
+      letter-spacing: 2px; 
+      text-align: center; 
+      color: white; 
+  }
+
+  #noDeal {
+      border: 3px solid white; 
+      padding: 5px; 
+      color: red; 
+  }
+
+  #deal {
+      color: gold; 
+  }
+
+  .cash {
+      color: lime; 
+      text-align: center; 
+  }
+
+  @keyframes popUp {
+         0% {top: 500px; opacity: 0; font-size: 45px;}
+       50% {top: 230px; opacity: 1; font-size: 55px;}
+     100% {top: -100px; opacity: 0; font-size: 45px;}
+  }
+
+  .cashAnimation {
+      color: lime; 
+      font-size: 45px; 
+      font-weight: bold; 
+      position: absolute;
+      text-align: center; 
+      width: 100%;
+      left: -5px;
+      top: 500px; 
+      opacity: 0;
+  }
+  </style>
+</head>
+<body bgcolor="#1c1c1c" style="overflow: hidden;">
+
+  <h1> <span id="deal">DEAL</span> OR 
+            <span id="noDeal">NO DEAL</span></h1>
+  <h2 class="cash">$ 0</h2>
+
+  <div class="container">
+    <div id="box" onclick="ifLose(1, this)">1</div>
+    <div id="box" onclick="ifLose(2, this)">2</div>
+    <div id="box" onclick="ifLose(3, this)">3</div>
+    <div id="box" onclick="ifLose(4, this)">4</div>
+    <div id="box" onclick="ifLose(5, this)">5</div>
+    <div id="box" onclick="ifLose(6, this)">6</div>
+    <div id="box" onclick="ifLose(7, this)">7</div>
+    <div id="box" onclick="ifLose(8, this)">8</div>
+    <div id="box" onclick="ifLose(9, this)">9</div>
+    <div id="box" onclick="ifLose(10, this)">10</div>
+    <div id="box" onclick="ifLose(11, this)">11</div>
+    <div id="box" onclick="ifLose(12, this)">12</div>
+    <div id="box" onclick="ifLose(13, this)">13</div>
+    <div id="box" onclick="ifLose(14, this)">14</div>
+    <div id="box" onclick="ifLose(15, this)">15</div>
+    <div id="box" onclick="ifLose(16, this)">16</div>
+    <div id="box" onclick="ifLose(17, this)">17</div>
+    <div id="box" onclick="ifLose(18, this)">18</div>
+    <div id="box" onclick="ifLose(19, this)">19</div>
+    <div id="box" onclick="ifLose(20, this)">20</div>
+    <div id="box" onclick="ifLose(21, this)">21</div>
+    <div id="box" onclick="ifLose(22, this)">22</div>
+    <div id="box" onclick="ifLose(23, this)">23</div>
+    <div id="box" onclick="ifLose(24, this)">24</div>
+    <div id="box" onclick="ifLose(25, this)">25</div>
+  </div>
+
+  <div class="cashAnimation">+ 500</div>
+
+<script>
+    let allBox = document.querySelectorAll("#box");
+    let cash = document.querySelector(".cash");
+    let cashAnimation = document.querySelector(".cashAnimation");
+
+    let wrongBox = Math.ceil( Math.random() * 25);
+    let mysteryBox = Math.ceil( Math.random() * 24);
+
+    allBox[mysteryBox].innerHTML = "?";
+    //allBox[mysteryBox].style.background = "gold";
+
+    let totalCash = 0;
+    let move = true; 
+
+    setInterval(intro, 100);
+    let eachBox = 0;
+    function intro() {
+        if (eachBox != mysteryBox) {
+            allBox[eachBox].style.background = "black";
+        }
+        else {
+            allBox[eachBox].style.background = "gold";
+        }
+        eachBox ++;
+    }
+
+    function ifLose(num, tag) {
+        if (wrongBox == num || move == false)  {
+            alert("You Lose!");
+            alert("Refresh the page to play again.");
+
+            totalCash -= totalCash; 
+            move = false; 
+            cash.style.color = "red";
+        }
+       else {
+            totalCash += 500;
+            tag.style.display = "none";
+            cashAnimation.style.animation = "popUp 1s linear";
+            setTimeout(stopAnimate, 1000);
+        }
+        function stopAnimate() {cashAnimation.style.animation = "none";}
+
+        cash.innerHTML = "$ " + totalCash;
+    }
+</script>
+</body>
+</html>
